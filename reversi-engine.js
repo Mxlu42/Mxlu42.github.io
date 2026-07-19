@@ -76,6 +76,8 @@ class Playboard {
     // Faithful port of Playboard.check_move — including its quirks:
     // `b`/`a` persist across neighbour iterations, and `case` (the last
     // opposing-neighbour direction) is returned when no bracket validates.
+    // Retained from the original engine, but NO LONGER used to decide legality:
+    // Reversi.is_valid_move now requires an actual capture (standard Othello).
     check_move(player, opposing_player) {
         let case_ = 0;
         let b = 0;
@@ -150,22 +152,11 @@ class Reversi {
         if (!(row >= 1 && row <= 8 && col >= 1 && col <= 8)) return false;
         if (this.board.playboard[row - 1][col - 1] !== null) return false;
 
-        const mov = new Move();
-        mov.row = row;
-        mov.column = col;
-        this.board.set_move(mov);
-
-        const current = this.current_player;
-        const opposing = this.get_opposing_player();
-        const result = this.board.check_move(current, opposing);
-
-        if (Array.isArray(result) && result.length === 2) {
-            const [i, j] = result;
-            if (i >= -1 && i <= 1 && j >= -1 && j <= 1 && (i !== 0 || j !== 0)) {
-                return true;
-            }
-        }
-        return false;
+        // Standard Othello: a move is legal only if it captures at least one
+        // disc. (The original port also accepted moves that merely touched an
+        // enemy disc without flanking it, via Playboard.check_move — that is no
+        // longer how legality is decided.)
+        return this._get_flip_directions(row, col).length > 0;
     }
 
     get_valid_moves() {
