@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How Noah Lisewski built this portfolio with Claude Code — planning, skills, MCP, memory, and a human in the loop.">
+    <title>How this site was built — Noah Lisewski</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%2316130D%22/><path d=%22M16 3a13 13 0 000 26z%22 fill=%22%23F1ECE0%22/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo"><span class="logo-disc" aria-hidden="true"></span>Noah&nbsp;Lisewski</a>
+        <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-links">
+            <li><a href="index.html#work">work</a></li>
+            <li><a href="index.html#roadmap">roadmap</a></li>
+            <li><a href="process.html" aria-current="page">how it's built</a></li>
+            <li><a href="https://github.com/Mxlu42" target="_blank" rel="noopener">github&#8599;</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-hero">
+        <div class="wrap">
+            <p class="eyebrow">case study &middot; building with ai</p>
+            <h1>How this site got built.</h1>
+            <p class="lede">
+                This portfolio wasn't hand-typed alone &mdash; and it wasn't blindly
+                &ldquo;generated&rdquo; either. I built it with <strong>Claude Code</strong> as a
+                pair: I set the direction and made every call, and the AI handled the scaffolding,
+                caught my mistakes, and pushed the design past its defaults. Here's the actual
+                workflow, honestly.
+            </p>
+            <div class="hero-cta">
+                <a href="index.html" class="btn btn-solid">&#8592; Back to the portfolio</a>
+                <a href="https://github.com/Mxlu42/Mxlu42.github.io" target="_blank" rel="noopener" class="btn btn-line">View the source &#8599;</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- The workflow, as completed moves -->
+        <section class="band">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">the workflow</p>
+                <h2 class="band-title">Six moves, in order.</h2>
+                <p class="band-sub">Filled discs &mdash; these already happened. Each step used a specific Claude Code capability.</p>
+                <ol class="roadmap" style="margin-top:2.75rem;">
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Plan before writing code</h3></div>
+                        <p>We started in <strong>planning mode</strong>. Claude explored the repo, asked me pointed questions about stack, sections, and visual direction, then wrote a plan file I reviewed and approved &mdash; before a single line was written.</p>
+                        <div class="rm-tools"><span class="rm-tool">/plan</span><span class="rm-tool">AskUserQuestion</span><span class="rm-tool">plan file &rarr; approval</span></div>
+                    </li>
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Install a skill for taste, not just code</h3></div>
+                        <p>My first draft looked like generic AI output &mdash; dark background, gradient accent, meaningless <span class="mono">01/02/03</span> markers. So I installed Anthropic's official <strong>frontend-design</strong> skill. It reframed the brief: stop shipping defaults, build an identity specific to <em>me</em>.</p>
+                        <div class="rm-tools"><span class="rm-tool">Skill: frontend-design</span></div>
+                    </li>
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Ground the design in my own work</h3></div>
+                        <p>The site's identity &mdash; the interactive Reversi board &mdash; comes straight from my flagship repo. Palette, typography, and motion all derive from that one honest idea instead of a template.</p>
+                        <div class="rm-tools"><span class="rm-tool">design system</span><span class="rm-tool">Reversi.py</span></div>
+                    </li>
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Structural code awareness (MCP)</h3></div>
+                        <p>The project is wired to an <strong>MCP</strong> server &mdash; a knowledge graph that maps the codebase structure for token-efficient review and impact analysis, so changes are understood in context rather than by re-reading everything.</p>
+                        <div class="rm-tools"><span class="rm-tool">MCP: code-review-graph</span></div>
+                    </li>
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Memory that persists</h3></div>
+                        <p>Claude Code saved durable notes &mdash; my design preferences and project context &mdash; to a persistent memory. The next session starts already knowing how I like to work.</p>
+                        <div class="rm-tools"><span class="rm-tool">Memory</span></div>
+                    </li>
+                    <li class="rm-item reveal">
+                        <span class="node-disc done" aria-hidden="true"></span>
+                        <div class="rm-head"><h3>Verify, then iterate</h3></div>
+                        <p>Every change was checked, not assumed: JS syntax with <span class="mono">node --check</span>, a local server plus <span class="mono">curl</span> status checks, and link validation. Then refined piece by piece &mdash; reordering the roadmap, wiring in my resume.</p>
+                        <div class="rm-tools"><span class="rm-tool">node --check</span><span class="rm-tool">http.server</span><span class="rm-tool">curl</span></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Tools, briefly -->
+        <section class="band band-alt">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">the toolkit</p>
+                <h2 class="band-title">What each piece actually does.</h2>
+                <div class="info-grid">
+                    <div class="info-card reveal">
+                        <span class="kicker">planning</span>
+                        <h3>Plan mode</h3>
+                        <p>Research and questions first, an approved plan second, code third. It stops the AI from sprinting in the wrong direction.</p>
+                    </div>
+                    <div class="info-card reveal">
+                        <span class="kicker">skills</span>
+                        <h3>Skills</h3>
+                        <p>Packaged expertise you drop in on demand &mdash; here, a design skill that raised the bar on aesthetics and killed the templated look.</p>
+                    </div>
+                    <div class="info-card reveal">
+                        <span class="kicker">context</span>
+                        <h3>MCP</h3>
+                        <p>A protocol that connects the AI to real tools and data &mdash; in this case a live graph of the codebase's structure.</p>
+                    </div>
+                    <div class="info-card reveal">
+                        <span class="kicker">continuity</span>
+                        <h3>Memory</h3>
+                        <p>Facts that survive between sessions, so preferences and project context don't have to be re-explained every time.</p>
+                    </div>
+                    <div class="info-card reveal">
+                        <span class="kicker">trust</span>
+                        <h3>Verification loop</h3>
+                        <p>Nothing ships on a hunch. Syntax checks, a running server, and status codes prove each change before we move on.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Human in the loop -->
+        <section class="band">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">human in the loop</p>
+                <div class="about-cols">
+                    <div>
+                        <h3 class="band-title split-title">What the AI accelerated</h3>
+                        <ul class="col-list">
+                            <li>Scaffolding the <strong>HTML, CSS, and JS</strong> fast, with a consistent system.</li>
+                            <li>Catching <strong>broken links and bugs</strong> before I ever saw them.</li>
+                            <li>Exploring <strong>options quickly</strong> so I could react, not start from a blank page.</li>
+                            <li>Doing the <strong>tedious verification</strong> on every change.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="band-title split-title">What I decided</h3>
+                        <ul class="col-list filled">
+                            <li>The <strong>brief</strong> &mdash; what this site is and who it's for.</li>
+                            <li>The <strong>concept</strong> &mdash; the Reversi identity was mine to choose.</li>
+                            <li>What's <strong>true vs. hype</strong> &mdash; this page is honest on purpose.</li>
+                            <li><strong>Content, priorities, and final sign-off</strong> on every step.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thesis -->
+        <section class="band band-alt">
+            <div class="wrap">
+                <p class="pull">AI didn't replace the decisions.<br>It made room for me to make <span class="brass">more of them.</span></p>
+                <div class="hero-cta" style="margin-top:2rem; display:flex; gap:0.9rem; flex-wrap:wrap;">
+                    <a href="index.html" class="btn btn-solid">See the result &rarr;</a>
+                    <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="btn btn-line">GitHub &#8599;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="wrap footer-inner">
+            <span class="mono">Noah&nbsp;Lisewski &middot; Mxlu42</span>
+            <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="mono">github.com/Mxlu42</a>
+            <span class="mono muted">&copy; <span id="year"></span></span>
+        </div>
+    </footer>
+</body>
+</html>

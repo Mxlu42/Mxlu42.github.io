@@ -1,17 +1,112 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Noah Lisewski (Mxlu42) — student developer who learns by building games and projects.">
+    <title>Noah Lisewski — makes things, breaks things, fixes things</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%2316130D%22/><path d=%22M16 3a13 13 0 000 26z%22 fill=%22%23F1ECE0%22/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet">
-    <title>My Portfolio</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>My Portfolio</h1>
+    <nav id="navbar">
+        <a href="#top" class="nav-logo"><span class="logo-disc" aria-hidden="true"></span>Noah&nbsp;Lisewski</a>
+        <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-links">
+            <li><a href="#about">about</a></li>
+            <li><a href="#work">work</a></li>
+            <li><a href="#roadmap">roadmap</a></li>
+            <li><a href="#resume">resume</a></li>
+            <li><a href="process.html">how it's built</a></li>
+            <li><a href="https://github.com/Mxlu42" target="_blank" rel="noopener">github&#8599;</a></li>
+        </ul>
+    </nav>
+
+    <header id="top" class="hero">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <p class="eyebrow">student developer &middot; Mxlu42</p>
+                <h1 class="hero-title">I make things,<br>break things,<br>then fix them.</h1>
+                <p class="hero-lede">
+                    I'm Noah &mdash; a student who learns by building. Board games in Python,
+                    projects for school, and whatever I'm curious about next.
+                </p>
+                <div class="hero-cta">
+                    <a href="#work" class="btn btn-solid">See what I've built</a>
+                    <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="btn btn-line">GitHub &#8599;</a>
+                </div>
+            </div>
+
+            <div class="hero-board" aria-hidden="true">
+                <div id="board" class="board"></div>
+                <p class="board-caption">
+                    <span class="mono">reversi.py</span> &mdash; click a square, flip a disc
+                </p>
+            </div>
+        </div>
     </header>
+
+    <main>
+        <section id="about" class="band">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">about</p>
+                <div class="about-cols">
+                    <h2 class="band-title">Learning out loud, one project at a time.</h2>
+                    <div class="about-copy">
+                        <p>
+                            Most of what I know I picked up by building something, getting it
+                            wrong, and figuring out why. A Reversi engine taught me game logic.
+                            A school seminar site taught me the web. Every repo is a checkpoint.
+                        </p>
+                        <p class="muted">
+                            <em>Placeholder &mdash; swap in your real story: what you're studying,
+                            what you love making, and where you're headed.</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="band band-alt">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">work</p>
+                <h2 class="band-title">Things I've built.</h2>
+                <div id="project-grid" class="project-grid"></div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="band">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">roadmap</p>
+                <h2 class="band-title">My next moves.</h2>
+                <p class="band-sub">Where I'm taking this &mdash; each one links to a map I'm following.</p>
+                <ol id="roadmap-track" class="roadmap"></ol>
+            </div>
+        </section>
+
+        <section id="resume" class="band band-alt">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">resume</p>
+                <div class="resume-row">
+                    <h2 class="band-title">The whole board, on one page.</h2>
+                    <a href="resume.pdf" class="btn btn-solid" download>Download resume &#8595;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="wrap footer-inner">
+            <span class="mono">Noah&nbsp;Lisewski &middot; Mxlu42</span>
+            <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="mono">github.com/Mxlu42</a>
+            <span class="mono muted">&copy; <span id="year"></span></span>
+        </div>
+    </footer>
 </body>
 </html>
