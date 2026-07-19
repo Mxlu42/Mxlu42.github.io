@@ -316,7 +316,19 @@ em { font-style: italic; }
     transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.5, 1);
 }
 .project-card:hover .card-disc { transform: rotateY(180deg); }
+.card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
 .project-card h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.3rem; }
+.card-status {
+    font-family: var(--f-mono); font-size: 0.62rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.16rem 0.5rem; border-radius: 100px;
+    background: var(--brass); color: var(--bone);
+    flex: none; align-self: center;
+}
+.project-card.is-wip { border-color: rgba(192, 138, 46, 0.45); }
+.project-card.is-wip:hover { border-color: var(--brass); box-shadow: 0 18px 34px -20px rgba(192, 138, 46, 0.5); }
+.card-link-muted { color: var(--ink-soft); cursor: default; }
+.card-link-muted:hover { text-decoration: none; }
 .project-card p { color: var(--ink-soft); font-size: 0.96rem; flex-grow: 1; }
 .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .card-tag {

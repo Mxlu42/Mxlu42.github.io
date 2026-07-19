@@ -5,6 +5,12 @@
 // ---- Project data (edit this list to add / remove projects) ----
 const projects = [
     {
+        title: "Fitness Dashboard",
+        desc: "What I'm building now: a React frontend talking to a REST API, a Raspberry Pi, and hardware I'm wiring myself — a system that watches, measures, and responds to something real, designed to absorb everything I learn next.",
+        tags: ["react", "rest api", "raspberry pi"],
+        status: "in progress",
+    },
+    {
         title: "Reversi",
         desc: "A playable Reversi / Othello engine in Python — board state, legal-move detection, disc flipping, and turn handling. The project this whole site is themed after.",
         tags: ["python", "game-logic"],
@@ -210,12 +216,17 @@ function renderProjects() {
     grid.innerHTML = projects
         .map(
             (p) => `
-        <article class="project-card reveal">
+        <article class="project-card reveal${p.status ? " is-wip" : ""}">
             <span class="card-disc" aria-hidden="true"></span>
-            <h3>${p.title}</h3>
+            <div class="card-head">
+                <h3>${p.title}</h3>
+                ${p.status ? `<span class="card-status">${p.status}</span>` : ""}
+            </div>
             <p>${p.desc}</p>
             <div class="card-tags">${p.tags.map((t) => `<span class="card-tag">${t}</span>`).join("")}</div>
-            <a class="card-link" href="${p.url}" target="_blank" rel="noopener">view on github &#8599;</a>
+            ${p.url
+                ? `<a class="card-link" href="${p.url}" target="_blank" rel="noopener">view on github &#8599;</a>`
+                : `<span class="card-link card-link-muted">building now &mdash; repo coming soon</span>`}
         </article>`
         )
         .join("");
