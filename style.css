@@ -284,6 +284,7 @@ em { font-style: italic; }
     align-items: start;
 }
 .about-copy p { font-size: 1.08rem; margin-bottom: 1rem; }
+.about-copy .about-hook { font-size: 1.18rem; color: var(--ink); font-weight: 500; }
 
 /* ---- Project cards (board tiles) ---- */
 .project-grid {
