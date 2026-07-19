@@ -70,46 +70,137 @@ function renderRoadmap() {
         .join("");
 }
 
-// ---- Build the Reversi board (decorative signature element) ----
+// ============================================================
+//  Reversi UI — thin glue around the ported engine.
+//  The rules live in reversi-engine.js (a faithful 1:1 port of the
+//  Python engine at github.com/Mxlu42/Reversi). This file just draws
+//  the board, handles clicks, and mirrors the Python play() loop's
+//  turn/pass handling for a click-driven, 2-player hotseat game.
+// ============================================================
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let game = null;          // active Reversi instance (from the engine)
+let cells = [];           // { cell, disc } refs, index 0..63 (row-major)
+let passedSide = null;    // 'B' | 'W' if a player was just skipped
+
+const sideName = (p) => (p === "B" ? "Black" : "White");
 
 function buildBoard() {
     const board = document.getElementById("board");
-    if (!board) return;
+    if (!board || typeof Reversi === "undefined") return;
 
-    const cells = [];
+    cells = [];
     for (let i = 0; i < 64; i++) {
-        const cell = document.createElement("div");
+        const row = Math.floor(i / 8) + 1;
+        const col = (i % 8) + 1;
+        const cell = document.createElement("button");
         cell.className = "cell";
+        cell.type = "button";
+        cell.setAttribute("aria-label", `Row ${row}, column ${col}`);
         const disc = document.createElement("div");
         disc.className = "disc";
         disc.innerHTML = '<div class="face black"></div><div class="face white"></div>';
         cell.appendChild(disc);
         board.appendChild(cell);
         cells.push({ cell, disc });
-
-        // Click to cycle: empty -> black -> white -> empty
-        cell.addEventListener("click", () => {
-            if (!disc.classList.contains("on")) disc.classList.add("on");
-            else if (!disc.classList.contains("white")) disc.classList.add("white");
-            else disc.classList.remove("on", "white");
-        });
+        cell.addEventListener("click", () => playAt(row, col));
     }
 
-    // Standard Reversi opening: d4/e5 white, d5/e4 black (0-indexed row*8+col)
-    const opening = [
-        { idx: 27, white: true },  // d4
-        { idx: 28, white: false }, // e4
-        { idx: 35, white: false }, // d5
-        { idx: 36, white: true },  // e5
-    ];
-    const place = (o, delay) => {
-        setTimeout(() => {
-            cells[o.idx].disc.classList.add("on");
-            if (o.white) cells[o.idx].disc.classList.add("white");
-        }, delay);
-    };
-    opening.forEach((o, i) => place(o, REDUCED ? 0 : 450 + i * 220));
+    newGame();
+
+    const resetBtn = document.getElementById("reset-btn");
+    if (resetBtn) resetBtn.addEventListener("click", newGame);
+}
+
+function newGame() {
+    game = new Reversi();     // engine sets the standard opening + Black to move
+    passedSide = null;
+    renderBoard();
+}
+
+function playAt(row, col) {
+    if (!game || game.game_over) return;
+    if (!game.is_valid_move(row, col)) return;   // engine decides legality
+
+    passedSide = null;
+    game.make_move(row, col);
+    game.switch_player();                         // play() switches after a move
+
+    // Mirror play()/check_game_over: end, or auto-skip a player with no moves.
+    if (game.check_game_over()) {
+        game.game_over = true;
+    } else if (game.get_valid_moves().length === 0) {
+        passedSide = game.current_player;         // this side gets skipped
+        game.switch_player();
+    }
+
+    renderBoard();
+}
+
+// Row-major set of "row,col" strings the current player may legally play.
+function legalSet() {
+    if (!game || game.game_over) return new Set();
+    return new Set(game.get_valid_moves().map(([r, c]) => `${r},${c}`));
+}
+
+function counts() {
+    let black = 0, white = 0;
+    for (const row of game.board.playboard) {
+        for (const cell of row) {
+            if (cell === "B") black++;
+            else if (cell === "W") white++;
+        }
+    }
+    return { black, white };
+}
+
+function renderBoard() {
+    const legal = legalSet();
+    cells.forEach(({ cell, disc }, i) => {
+        const row = Math.floor(i / 8) + 1;
+        const col = (i % 8) + 1;
+        const v = game.board.playboard[row - 1][col - 1]; // null | 'B' | 'W'
+        disc.classList.toggle("on", v !== null);
+        disc.classList.toggle("white", v === "W");
+        const canPlay = legal.has(`${row},${col}`);
+        cell.classList.toggle("playable", canPlay);
+        cell.disabled = game.game_over || !canPlay;
+    });
+    renderStatus(legal.size);
+}
+
+function renderStatus(legalCount) {
+    const { black, white } = counts();
+    const bEl = document.getElementById("score-black");
+    const wEl = document.getElementById("score-white");
+    if (bEl) bEl.textContent = black;
+    if (wEl) wEl.textContent = white;
+
+    const disc = document.getElementById("turn-disc");
+    const name = document.getElementById("turn-name");
+    const msg = document.getElementById("game-msg");
+
+    if (game.game_over) {
+        if (name) name.textContent = "Game over";
+        if (disc) disc.className = "turn-disc";
+        if (msg) {
+            msg.textContent =
+                black === white ? "It's a tie."
+                    : `${black > white ? "Black" : "White"} wins ${Math.max(black, white)}–${Math.min(black, white)}.`;
+        }
+        return;
+    }
+
+    const turn = game.current_player; // 'B' | 'W'
+    if (name) name.textContent = `${sideName(turn)} to move`;
+    if (disc) disc.className = `turn-disc ${turn === "B" ? "black" : "white"}`;
+    if (msg) {
+        if (passedSide) {
+            msg.textContent = `${sideName(passedSide)} had no move — skipped.`;
+        } else {
+            msg.textContent = `${legalCount} legal move${legalCount === 1 ? "" : "s"}.`;
+        }
+    }
 }
 
 // ---- Render project cards ----

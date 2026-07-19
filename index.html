@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="reversi-engine.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -23,6 +24,7 @@
             <li><a href="#work">work</a></li>
             <li><a href="#roadmap">roadmap</a></li>
             <li><a href="#resume">resume</a></li>
+            <li><a href="#contact">contact</a></li>
             <li><a href="process.html">how it's built</a></li>
             <li><a href="https://github.com/Mxlu42" target="_blank" rel="noopener">github&#8599;</a></li>
         </ul>
@@ -43,10 +45,35 @@
                 </div>
             </div>
 
-            <div class="hero-board" aria-hidden="true">
-                <div id="board" class="board"></div>
+            <div class="hero-board">
+                <div class="game">
+                    <div id="board" class="board" role="grid" aria-label="Reversi board"></div>
+                    <aside class="game-panel" aria-live="polite">
+                        <div class="turn">
+                            <span class="turn-label">turn</span>
+                            <div class="turn-now">
+                                <span id="turn-disc" class="turn-disc"></span>
+                                <span id="turn-name">Black</span>
+                            </div>
+                        </div>
+                        <div class="scores">
+                            <div class="score">
+                                <span class="score-disc black" aria-hidden="true"></span>
+                                <span class="score-side">Black</span>
+                                <span id="score-black" class="score-num">2</span>
+                            </div>
+                            <div class="score">
+                                <span class="score-disc white" aria-hidden="true"></span>
+                                <span class="score-side">White</span>
+                                <span id="score-white" class="score-num">2</span>
+                            </div>
+                        </div>
+                        <p id="game-msg" class="game-msg"></p>
+                        <button id="reset-btn" class="btn btn-solid game-reset" type="button">Reset game</button>
+                    </aside>
+                </div>
                 <p class="board-caption">
-                    <span class="mono">reversi.py</span> &mdash; click a square, flip a disc
+                    <span class="mono">reversi.py</span> &mdash; my own engine, playing by its own custom rules
                 </p>
             </div>
         </div>
@@ -96,6 +123,24 @@
                 <div class="resume-row">
                     <h2 class="band-title">The whole board, on one page.</h2>
                     <a href="resume.pdf" class="btn btn-solid" download>Download resume &#8595;</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="band">
+            <div class="wrap">
+                <p class="eyebrow eyebrow-disc">contact</p>
+                <div class="contact-row">
+                    <div>
+                        <h2 class="band-title">Your move.</h2>
+                        <p class="band-sub">
+                            Got a project, a question, or just want to say hi? Drop me a line &mdash;
+                            I read everything.
+                        </p>
+                    </div>
+                    <a href="mailto:noahlisewski@gmail.com" class="btn btn-solid contact-btn">
+                        noahlisewski@gmail.com &#8599;
+                    </a>
                 </div>
             </div>
         </section>
