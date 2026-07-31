@@ -11,6 +11,12 @@ const projects = [
         status: "in progress",
     },
     {
+        title: "Robo-arm",
+        desc: "A robotic arm project built at Technische Hochschule Mannheim — controlling motors and mechanics in C++, my first real step into hardware beyond a screen.",
+        tags: ["c++", "robotics", "school"],
+        url: "https://github.com/Mxlu42/Robo-arm",
+    },
+    {
         title: "Reversi",
         desc: "A playable Reversi / Othello engine in Python — board state, legal-move detection, disc flipping, and turn handling. The project this whole site is themed after.",
         tags: ["python", "game-logic"],
