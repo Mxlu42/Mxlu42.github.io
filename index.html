@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Noah Lisewski (Mxlu42) — student developer who learns by building games and projects.">
-    <title>Noah Lisewski — makes things, breaks things, fixes things</title>
+    <meta name="description" content="Noah Lisewski (Mxlu42) - student developer who learns by building games and projects.">
+    <title>Noah Lisewski - makes things, breaks things, fixes things</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%2316130D%22/><path d=%22M16 3a13 13 0 000 26z%22 fill=%22%23F1ECE0%22/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="reversi-engine.js" defer></script>
     <script src="script.js" defer></script>
@@ -30,22 +30,20 @@
         </ul>
     </nav>
 
-    <header id="top" class="hero">
-        <div class="hero-grid">
-            <div class="hero-text">
-                <p class="eyebrow">student developer &middot; Mxlu42</p>
-                <h1 class="hero-title">I make things,<br>break things,<br>then fix them.</h1>
-                <p class="hero-lede">
-                    I'm Noah &mdash; a student who learns by building. Board games in Python,
-                    projects for school, and whatever I'm curious about next.
-                </p>
-                <div class="hero-cta">
-                    <a href="#work" class="btn btn-solid">See what I've built</a>
-                    <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="btn btn-line">GitHub &#8599;</a>
-                </div>
+    <div class="stage">
+        <header id="top" class="stage-rail">
+            <p class="eyebrow">student developer &middot; Mxlu42</p>
+            <h1 class="hero-title">I make things,<br>break things,<br><em>then fix them.</em></h1>
+            <p class="hero-lede">
+                I'm Noah - a student who learns by building. Board games in Python,
+                projects for school, and whatever I'm curious about next.
+            </p>
+            <div class="hero-cta">
+                <a href="#work" class="btn btn-solid">See what I've built</a>
+                <a href="https://github.com/Mxlu42" target="_blank" rel="noopener" class="btn btn-line">GitHub &#8599;</a>
             </div>
 
-            <div class="hero-board">
+            <div class="board-frame">
                 <div class="game">
                     <div id="board" class="board" role="grid" aria-label="Reversi board"></div>
                     <aside class="game-panel" aria-live="polite">
@@ -72,17 +70,16 @@
                         <button id="reset-btn" class="btn btn-solid game-reset" type="button">Reset game</button>
                     </aside>
                 </div>
-                <p class="board-caption">
-                    <span class="mono">reversi.py</span> &mdash; my own engine, ported 1:1 to the browser
-                </p>
             </div>
-        </div>
-    </header>
+            <p class="board-caption">
+                <span class="mono">reversi.py</span> - my own engine, ported 1:1 to the browser
+            </p>
+        </header>
 
-    <main>
+        <main class="stage-content">
         <section id="about" class="band">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">about</p>
+                <p class="eyebrow eyebrow-disc">about<span class="ref-tag">fig. 01 - about</span></p>
                 <div class="about-cols">
                     <h2 class="band-title">From a closed board to an open one.</h2>
                     <div class="about-copy">
@@ -93,14 +90,14 @@
                         </p>
                         <p>
                             Reversi has 64 squares and two colors. It's a good place to learn how
-                            logic works &mdash; but it's also a closed system: fixed board, fixed
+                            logic works - but it's also a closed system: fixed board, fixed
                             rules, no sensors, no signal from the outside world. At some point I
                             wanted to build things that didn't just compute a move, but actually
                             <strong>watched, measured, and responded</strong> to something real.
                         </p>
                         <p>
                             That's what I'm building now with my <strong>fitness dashboard</strong>
-                            &mdash; currently in progress, so there's nothing to click through yet,
+                            - currently in progress, so there's nothing to click through yet,
                             but the shape of it is set. A React frontend will talk to a REST API,
                             which talks to a Raspberry Pi, which talks to hardware I'm building
                             myself. Every layer is something I'm learning by breaking it first: the
@@ -109,8 +106,8 @@
                             that code eventually has to survive contact with the physical world.
                         </p>
                         <p>
-                            It's designed to keep growing. Every new thing I learn &mdash; a new
-                            sensor, a new ML model, a cleaner API pattern &mdash; will have a place to
+                            It's designed to keep growing. Every new thing I learn - a new
+                            sensor, a new ML model, a cleaner API pattern - will have a place to
                             plug in. Instead of stacking finished checkpoints next to each other, this
                             one project is meant to absorb them as it goes. If Reversi was a closed
                             board with a fixed set of moves, this is the opposite: an
@@ -122,26 +119,42 @@
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <section id="work" class="band band-alt">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">work</p>
+                <p class="eyebrow eyebrow-disc">work<span class="ref-tag">fig. 02 - work</span></p>
                 <h2 class="band-title">Things I've built.</h2>
                 <div id="project-grid" class="project-grid"></div>
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <section id="roadmap" class="band">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">roadmap</p>
+                <p class="eyebrow eyebrow-disc">roadmap<span class="ref-tag">fig. 03 - roadmap</span></p>
                 <h2 class="band-title">My next moves.</h2>
-                <p class="band-sub">Where I'm taking this &mdash; each one links to a map I'm following.</p>
-                <ol id="roadmap-track" class="roadmap"></ol>
+                <p class="band-sub">Where I'm taking this - each one links to a map I'm following.</p>
+                <div class="roadmap-layout">
+                    <ol id="roadmap-track" class="roadmap"></ol>
+                    <aside class="roadmap-legend" aria-hidden="true">
+                        <p class="roadmap-legend-title">key</p>
+                        <ul class="roadmap-legend-list">
+                            <li><span class="legend-disc done" aria-hidden="true"></span>done</li>
+                            <li><span class="legend-disc now" aria-hidden="true"></span>in progress</li>
+                            <li><span class="legend-disc" aria-hidden="true"></span>later</li>
+                        </ul>
+                    </aside>
+                </div>
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <section id="resume" class="band band-alt">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">resume</p>
+                <p class="eyebrow eyebrow-disc">resume<span class="ref-tag">fig. 04 - resume</span></p>
                 <div class="resume-row">
                     <h2 class="band-title">The whole board, on one page.</h2>
                     <a href="resume_wp.pdf" class="btn btn-solid" download>Download resume &#8595;</a>
@@ -149,9 +162,11 @@
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <section id="contact" class="band">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">contact</p>
+                <p class="eyebrow eyebrow-disc">contact<span class="ref-tag">fig. 05 - contact</span></p>
                 <div class="contact-row">
                     <div>
                         <h2 class="band-title">Your move.</h2>
@@ -165,7 +180,8 @@
                 </div>
             </div>
         </section>
-    </main>
+        </main>
+    </div>
 
     <footer id="footer">
         <div class="wrap footer-inner">

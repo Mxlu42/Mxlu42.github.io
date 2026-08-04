@@ -6,31 +6,31 @@
 const projects = [
     {
         title: "Fitness Dashboard",
-        desc: "What I'm building now: a React frontend talking to a REST API, a Raspberry Pi, and hardware I'm wiring myself — a system that watches, measures, and responds to something real, designed to absorb everything I learn next.",
+        desc: "What I'm building now: a React frontend talking to a REST API, a Raspberry Pi, and hardware I'm wiring myself - a system that watches, measures, and responds to something real, designed to absorb everything I learn next.",
         tags: ["react", "rest api", "raspberry pi"],
         status: "in progress",
     },
     {
         title: "Robo-arm",
-        desc: "A robotic arm project built at Technische Hochschule Mannheim — controlling motors and mechanics in C++, my first real step into hardware beyond a screen.",
+        desc: "A robotic arm project built at Technische Hochschule Mannheim - controlling motors and mechanics in C++, my first real step into hardware beyond a screen.",
         tags: ["c++", "robotics", "school"],
         url: "https://github.com/Mxlu42/Robo-arm",
     },
     {
         title: "Reversi",
-        desc: "A playable Reversi / Othello engine in Python — board state, legal-move detection, disc flipping, and turn handling. The project this whole site is themed after.",
+        desc: "A playable Reversi / Othello engine in Python - board state, legal-move detection, disc flipping, and turn handling. The project this whole site is themed after.",
         tags: ["python", "game-logic"],
         url: "https://github.com/Mxlu42/Reversi",
     },
     {
         title: "Seminar",
-        desc: "A seminar project built for CBS school in HTML — my first real structured web build, and where the layout bug started making sense.",
+        desc: "A seminar project built for CBS school in HTML - my first real structured web build, and where the layout bug started making sense.",
         tags: ["html", "school"],
         url: "https://github.com/Mxlu42/Seminar",
     },
     {
         title: "Github-Tutorial",
-        desc: "A Python walk-through of Git and GitHub workflows — commits, branches, and not being afraid of version control.",
+        desc: "A Python walk-through of Git and GitHub workflows - commits, branches, and not being afraid of version control.",
         tags: ["python", "git"],
         url: "https://github.com/Mxlu42/Github-Tutorial",
     },
@@ -42,14 +42,14 @@ const roadmap = [
     {
         title: "Ship more AI features",
         status: "now",
-        desc: "Go past calling an API — build real AI-powered features into my projects and understand what's under the hood.",
+        desc: "Go past calling an API - build real AI-powered features into my projects and understand what's under the hood.",
         label: "ai engineer roadmap",
         url: "https://roadmap.sh/ai-engineer",
     },
     {
         title: "Host my own server",
         status: "next",
-        desc: "Stand up a home server I actually run — Linux, networking, deploys — instead of leaning on someone else's cloud.",
+        desc: "Stand up a home server I actually run - Linux, networking, deploys - instead of leaning on someone else's cloud.",
         label: "devops roadmap",
         url: "https://roadmap.sh/devops",
     },
@@ -198,7 +198,7 @@ function renderStatus(legalCount) {
         if (msg) {
             msg.textContent =
                 black === white ? "It's a tie."
-                    : `${black > white ? "Black" : "White"} wins ${Math.max(black, white)}–${Math.min(black, white)}.`;
+                    : `${black > white ? "Black" : "White"} wins ${Math.max(black, white)}-${Math.min(black, white)}.`;
         }
         return;
     }
@@ -208,7 +208,7 @@ function renderStatus(legalCount) {
     if (disc) disc.className = `turn-disc ${turn === "B" ? "black" : "white"}`;
     if (msg) {
         if (passedSide) {
-            msg.textContent = `${sideName(passedSide)} had no move — skipped.`;
+            msg.textContent = `${sideName(passedSide)} had no move - skipped.`;
         } else {
             msg.textContent = `${legalCount} legal move${legalCount === 1 ? "" : "s"}.`;
         }
@@ -232,7 +232,7 @@ function renderProjects() {
             <div class="card-tags">${p.tags.map((t) => `<span class="card-tag">${t}</span>`).join("")}</div>
             ${p.url
                 ? `<a class="card-link" href="${p.url}" target="_blank" rel="noopener">view on github &#8599;</a>`
-                : `<span class="card-link card-link-muted">building now &mdash; repo coming soon</span>`}
+                : `<span class="card-link card-link-muted">building now - repo coming soon</span>`}
         </article>`
         )
         .join("");

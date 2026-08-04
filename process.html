@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How Noah Lisewski built this portfolio with Claude Code — planning, skills, MCP, memory, and a human in the loop.">
-    <title>How this site was built — Noah Lisewski</title>
+    <meta name="description" content="How Noah Lisewski built this portfolio with Claude Code - planning, skills, MCP, memory, and a human in the loop.">
+    <title>How this site was built - Noah Lisewski</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2213%22 fill=%22%2316130D%22/><path d=%22M16 3a13 13 0 000 26z%22 fill=%22%23F1ECE0%22/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -34,7 +34,7 @@
             <p class="eyebrow">case study &middot; building with ai</p>
             <h1>How this site got built.</h1>
             <p class="lede">
-                This portfolio wasn't hand-typed alone &mdash; and it wasn't blindly
+                This portfolio wasn't hand-typed alone - and it wasn't blindly
                 &ldquo;generated&rdquo; either. I built it with <strong>Claude Code</strong> as a
                 pair: I set the direction and made every call, and the AI handled the scaffolding,
                 caught my mistakes, and pushed the design past its defaults. Here's the actual
@@ -47,58 +47,62 @@
         </div>
     </header>
 
+    <div class="trace-divider" aria-hidden="true"></div>
+
     <main>
         <!-- The workflow, as completed moves -->
         <section class="band">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">the workflow</p>
+                <p class="eyebrow eyebrow-disc">the workflow<span class="ref-tag">fig. 01 - workflow</span></p>
                 <h2 class="band-title">Six moves, in order.</h2>
-                <p class="band-sub">Filled discs &mdash; these already happened. Each step used a specific Claude Code capability.</p>
+                <p class="band-sub">Filled discs - these already happened. Each step used a specific Claude Code capability.</p>
                 <ol class="roadmap" style="margin-top:2.75rem;">
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Plan before writing code</h3></div>
-                        <p>We started in <strong>planning mode</strong>. Claude explored the repo, asked me pointed questions about stack, sections, and visual direction, then wrote a plan file I reviewed and approved &mdash; before a single line was written.</p>
+                        <p>We started in <strong>planning mode</strong>. Claude explored the repo, asked me pointed questions about stack, sections, and visual direction, then wrote a plan file I reviewed and approved - before a single line was written.</p>
                         <div class="rm-tools"><span class="rm-tool">/plan</span><span class="rm-tool">AskUserQuestion</span><span class="rm-tool">plan file &rarr; approval</span></div>
                     </li>
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Install a skill for taste, not just code</h3></div>
-                        <p>My first draft looked like generic AI output &mdash; dark background, gradient accent, meaningless <span class="mono">01/02/03</span> markers. So I installed Anthropic's official <strong>frontend-design</strong> skill. It reframed the brief: stop shipping defaults, build an identity specific to <em>me</em>.</p>
-                        <div class="rm-tools"><span class="rm-tool">Skill: frontend-design</span></div>
+                        <p>My first draft looked like generic AI output - dark background, gradient accent, meaningless <span class="mono">01/02/03</span> markers. So I installed Anthropic's official <strong>frontend-design</strong> skill. It reframed the brief: stop shipping defaults, build an identity specific to <em>me</em>. For this redesign, I reached for the same habit again - frontend-design for direction, plus a new impeccable skill this round for critique and polish. Iteration two, not a new trick.</p>
+                        <div class="rm-tools"><span class="rm-tool">Skill: frontend-design</span><span class="rm-tool">Skill: impeccable</span></div>
                     </li>
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Ground the design in my own work</h3></div>
-                        <p>The site's identity &mdash; the interactive Reversi board &mdash; comes straight from my flagship repo, and it's not just a coat of paint: the board runs my <strong>actual engine</strong>, ported <strong>1:1</strong> from Python (<span class="mono">Reversi.py</span>) into browser JavaScript. Palette, typography, motion, <em>and the game logic</em> all derive from that one honest idea instead of a template.</p>
+                        <p>The site's identity - the interactive Reversi board - comes straight from my flagship repo, and it's not just a coat of paint: the board runs my <strong>actual engine</strong>, ported <strong>1:1</strong> from Python (<span class="mono">Reversi.py</span>) into browser JavaScript. Palette, typography, motion, <em>and the game logic</em> all derive from that one honest idea instead of a template.</p>
                         <div class="rm-tools"><span class="rm-tool">design system</span><span class="rm-tool">Reversi.py</span><span class="rm-tool">1:1 port (Python &rarr; JS)</span></div>
                     </li>
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Structural code awareness (MCP)</h3></div>
-                        <p>The project is wired to an <strong>MCP</strong> server &mdash; a knowledge graph that maps the codebase structure for token-efficient review and impact analysis, so changes are understood in context rather than by re-reading everything.</p>
+                        <p>The project is wired to an <strong>MCP</strong> server - a knowledge graph that maps the codebase structure for token-efficient review and impact analysis, so changes are understood in context rather than by re-reading everything.</p>
                         <div class="rm-tools"><span class="rm-tool">MCP: code-review-graph</span></div>
                     </li>
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Memory that persists</h3></div>
-                        <p>Claude Code saved durable notes &mdash; my design preferences and project context &mdash; to a persistent memory. The next session starts already knowing how I like to work.</p>
+                        <p>Claude Code saved durable notes - my design preferences and project context - to a persistent memory. The next session starts already knowing how I like to work.</p>
                         <div class="rm-tools"><span class="rm-tool">Memory</span></div>
                     </li>
                     <li class="rm-item reveal">
                         <span class="node-disc done" aria-hidden="true"></span>
                         <div class="rm-head"><h3>Verify, then iterate</h3></div>
-                        <p>The engine port wasn't eyeballed &mdash; it was <strong>proven</strong>. I replayed <strong>726 steps</strong> of my real Python engine through the JavaScript version and diffed every board: <strong>zero mismatches</strong>, plus a full game matching Python end to end. Ordinary changes got the same treatment: JS syntax with <span class="mono">node --check</span>, a local server plus <span class="mono">curl</span> status checks, and link validation. Then refined piece by piece &mdash; reordering the roadmap, wiring in my resume.</p>
+                        <p>The engine port wasn't eyeballed - it was <strong>proven</strong>. I replayed <strong>726 steps</strong> of my real Python engine through the JavaScript version and diffed every board: <strong>zero mismatches</strong>, plus a full game matching Python end to end. Ordinary changes got the same treatment: JS syntax with <span class="mono">node --check</span>, a local server plus <span class="mono">curl</span> status checks, and link validation. Then refined piece by piece - reordering the roadmap, wiring in my resume.</p>
                         <div class="rm-tools"><span class="rm-tool">parity: 726 steps</span><span class="rm-tool">engine-trace diff</span><span class="rm-tool">node --check</span><span class="rm-tool">http.server</span><span class="rm-tool">curl</span></div>
                     </li>
                 </ol>
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <!-- Tools, briefly -->
         <section class="band band-alt">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">the toolkit</p>
+                <p class="eyebrow eyebrow-disc">the toolkit<span class="ref-tag">fig. 02 - toolkit</span></p>
                 <h2 class="band-title">What each piece actually does.</h2>
                 <div class="info-grid">
                     <div class="info-card reveal">
@@ -109,12 +113,12 @@
                     <div class="info-card reveal">
                         <span class="kicker">skills</span>
                         <h3>Skills</h3>
-                        <p>Packaged expertise you drop in on demand &mdash; here, a design skill that raised the bar on aesthetics and killed the templated look.</p>
+                        <p>Packaged expertise you drop in on demand - here, a design skill that raised the bar on aesthetics and killed the templated look, reused (with a critique-focused sibling skill) for this redesign's pass.</p>
                     </div>
                     <div class="info-card reveal">
                         <span class="kicker">context</span>
                         <h3>MCP</h3>
-                        <p>A protocol that connects the AI to real tools and data &mdash; in this case a live graph of the codebase's structure.</p>
+                        <p>A protocol that connects the AI to real tools and data - in this case a live graph of the codebase's structure.</p>
                     </div>
                     <div class="info-card reveal">
                         <span class="kicker">continuity</span>
@@ -130,10 +134,12 @@
             </div>
         </section>
 
+        <div class="trace-divider" aria-hidden="true"></div>
+
         <!-- Human in the loop -->
         <section class="band">
             <div class="wrap">
-                <p class="eyebrow eyebrow-disc">human in the loop</p>
+                <p class="eyebrow eyebrow-disc">human in the loop<span class="ref-tag">fig. 03 - process</span></p>
                 <div class="about-cols">
                     <div>
                         <h3 class="band-title split-title">What the AI accelerated</h3>
@@ -147,15 +153,17 @@
                     <div>
                         <h3 class="band-title split-title">What I decided</h3>
                         <ul class="col-list filled">
-                            <li>The <strong>brief</strong> &mdash; what this site is and who it's for.</li>
-                            <li>The <strong>concept</strong> &mdash; the Reversi identity was mine to choose.</li>
-                            <li>What's <strong>true vs. hype</strong> &mdash; this page is honest on purpose.</li>
+                            <li>The <strong>brief</strong> - what this site is and who it's for.</li>
+                            <li>The <strong>concept</strong> - the Reversi identity was mine to choose.</li>
+                            <li>What's <strong>true vs. hype</strong> - this page is honest on purpose.</li>
                             <li><strong>Content, priorities, and final sign-off</strong> on every step.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="trace-divider" aria-hidden="true"></div>
 
         <!-- Thesis -->
         <section class="band band-alt">
